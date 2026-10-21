@@ -1,8 +1,5 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
 import './App.css'
+import { Sports } from './pages/Sports'
 import { Route, Routes } from 'react-router-dom'
 import { Home } from './pages/Home'
 import { Movie } from './pages/Movie'
@@ -32,6 +29,7 @@ function App() {
         <Route path="/new" element={<New />} />
         <Route path="/animate" element={<AnimatePage />} />
         <Route path="/heart" element={<Heart />} />
+        <Route path="/sports" element={<Sports />} />
         <Route path="/movie/:id" element={<MovieDetail />} />
         <Route path="/tv/:id" element={<TvDetail />} />
 

@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useAuthStore } from '../store/useAuthStore';
+
+import './Header.css'
 
 // 메인메뉴
 const mainMenu = [
@@ -9,6 +11,7 @@ const mainMenu = [
     { id: 3, menu: "NEW 요즘 대세 콘텐츠", path: "/new" },
     { id: 4, menu: "애니메이션", path: "/animate" },
     { id: 5, menu: "찜리스트", path: "/heart" },
+    { id: 6, menu: "스포츠", path: "/sports" },
 
 ]
 const familys = ["아빠", "엄마", "아들", "딸"];
@@ -38,14 +41,14 @@ export const Header = () => {
     const isHome = location.pathname === "/";
     console.log(isHome);
     return (
-        <header className={`fixed z-10000 w-full py-5 ${isHome ? "bg-transparent" : "bg-green-500"}`}>
+        <header className={`site-header ${location.pathname === "/sports" ? "sports-header" : ""} fixed z-10000 w-full py-5 ${isHome ? "bg-transparent" : "bg-green-500"}`}>
             <div className="inner flex justify-between items-center">
                 <div className="header-left flex gap-10 items-center">
                     <h1><Link to="/"><img src="/images/logo.png" alt="" className='w-40' /></Link></h1>
-                    <ul className='flex gap-5'>
+                    <ul className='main-menu flex gap-5'>
                         {mainMenu.map((menu) => (
                             <li key={menu.id}>
-                                <Link className={`${isHome ? "text-white" : "text-black"}`}
+                                <Link aria-current={location.pathname === menu.path ? "page" : undefined} className={`${isHome ? "text-white" : "text-black"}`}
                                     to={menu.path}>{menu.menu}</Link>
                             </li>
                         ))}
@@ -63,7 +66,7 @@ export const Header = () => {
                                             {/* <p>{user.displayName || user.email}</p> */}
                                             <ul>
                                                 {familys.map((f) => (
-                                                    <li><button onClick={() => handleChangeMember(f)}>{f}</button></li>
+                                                    <li key={f}><button onClick={() => handleChangeMember(f)}>{f}</button></li>
                                                 ))}
                                             </ul>
                                             <button onClick={handleLogout}>로그아웃</button>
